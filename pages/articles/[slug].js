@@ -126,7 +126,9 @@ export const getStaticProps = async ({ params, locale }) => {
     const articleData = articleJson.data[0]
 
     if (!articleData) {
-      return null
+      return {
+        notFound: true,
+      }
     }
 
     const article = { id: articleData.id, ...articleData.attributes }
