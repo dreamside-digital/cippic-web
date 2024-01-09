@@ -126,11 +126,7 @@ export const getStaticProps = async ({ params, locale }) => {
     const articleData = articleJson.data[0]
 
     if (!articleData) {
-      return {
-        redirect: {
-          destination: "/",
-        },
-      }
+      return null
     }
 
     const article = { id: articleData.id, ...articleData.attributes }
