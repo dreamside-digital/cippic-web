@@ -967,6 +967,20 @@
             }
         }
 
+        .issue-header {
+            flex-direction: column;
+
+            .header-image {
+                display: block;
+            }
+
+            .header-content {
+                padding: 0;
+                padding-top: 1.5rem;
+                display: block;
+            }
+        }
+
     }
     
     @media(max-width:550px){
