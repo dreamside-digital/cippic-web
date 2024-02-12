@@ -8121,12 +8121,34 @@ h1.headline {
     }
 }
 
-.header-image {
+.issue-header {
+    display: flex;
 
-    img {
-        object-fit: cover;
+    .header-image {
+        flex: 0 0 20%;
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+        }
+        img {
+            object-fit: cover;
+        }
+    }
+
+    .header-content {
+        padding: 1.5rem;
+        padding-top: 0;
+        flex: 1 0 80%;
     }
 }
+
+// .header-image {
+//     img {
+//         object-fit: cover;
+//     }
+// }
 
 .uottawa-logo {
     filter: grayscale(1) brightness(6);

@@ -19490,8 +19490,24 @@ h1.headline {
   min-width: 0;
 }
 
-.header-image img {
+.issue-header {
+  display: flex;
+}
+.issue-header .header-image {
+  flex: 0 0 20%;
+}
+.issue-header .header-image .image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+}
+.issue-header .header-image img {
   object-fit: cover;
+}
+.issue-header .header-content {
+  padding: 1.5rem;
+  padding-top: 0;
+  flex: 1 0 80%;
 }
 
 .uottawa-logo {
@@ -20550,6 +20566,17 @@ a.article-card:hover .read_more i {
   }
   .header_logo_box strong {
     display: none;
+  }
+  .issue-header {
+    flex-direction: column;
+  }
+  .issue-header .header-image {
+    display: block;
+  }
+  .issue-header .header-content {
+    padding: 0;
+    padding-top: 1.5rem;
+    display: block;
   }
 }
 @media (max-width: 550px) {
