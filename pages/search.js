@@ -63,7 +63,7 @@ const searchArticles = async ({ locale, term }) => {
   }
 }
 
-const searchPages = async ({ locale, term }) => {
+const searchPages = async ({ locale, term, label="Page" }) => {
   try {
     const searchQuery = qs.stringify(
         {
@@ -88,7 +88,7 @@ const searchPages = async ({ locale, term }) => {
         const item = {
           title: page.attributes.title,
           preview: page.attributes.subtitle,
-          categories: [{name: 'Page'}],
+          categories: [{name: label}],
           content_types: [],
           link: `/${locale}/${page.attributes.slug}`,
         }
@@ -102,7 +102,7 @@ const searchPages = async ({ locale, term }) => {
   }
 }
 
-const searchCategories = async ({ locale, term }) => {
+const searchCategories = async ({ locale, term, label }) => {
   try {
     const searchQuery = qs.stringify(
         {
@@ -127,7 +127,7 @@ const searchCategories = async ({ locale, term }) => {
         const item = {
           title: category.attributes.name,
           preview: category.attributes.description,
-          categories: [{ name: 'Issue' }],
+          categories: [{ name: label }],
           content_types: [],
           link: `/${locale}/issues/${category.attributes.slug}`
         }
@@ -141,7 +141,7 @@ const searchCategories = async ({ locale, term }) => {
   }
 }
 
-const searchContentTypes = async ({ locale, term }) => {
+const searchContentTypes = async ({ locale, term, label }) => {
   try {
     const searchQuery = qs.stringify(
         {
@@ -166,7 +166,7 @@ const searchContentTypes = async ({ locale, term }) => {
         const item = {
           title: content_type.attributes.name,
           preview: content_type.attributes.description,
-          categories: [{ name: 'Our work' }],
+          categories: [{ name: label }],
           content_types: [],
           link: `/${locale}/our-work/${content_type.attributes.slug}`
         }
@@ -183,10 +183,11 @@ const searchContentTypes = async ({ locale, term }) => {
 
 export const getServerSideProps = async ({ locale, query }) => {
     const layout = await getLayoutData(locale)
+    const terms = layout.translation
     const { term } = query;
-    const pages = await searchPages({ locale, term })
-    const categories = await searchCategories({ locale, term })
-    const contentTypes = await searchContentTypes({ locale, term })
+    const pages = await searchPages({ locale, term, label: terms.page })
+    const categories = await searchCategories({ locale, term, label: terms.issues })
+    const contentTypes = await searchContentTypes({ locale, term, label: terms.our_work })
     const articles = await searchArticles({ locale, term })
 
     const content = { searchResults: [...pages, ...categories, ...contentTypes, ...articles] }

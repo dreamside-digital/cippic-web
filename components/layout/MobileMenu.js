@@ -8,6 +8,7 @@ import { TranslationContext } from '@/contexts/TranslationContext'
 const MobileMenu = forwardRef(function MobileMenu(props, ref) {
     const { handleMobileMenu, topics=[], contentTypes=[], links=[], localizations } = props;
     const router = useRouter()
+    const locale = router.locale
     const terms = useContext(TranslationContext)
 
     const [isActive, setIsActive] = useState({
@@ -38,7 +39,7 @@ const MobileMenu = forwardRef(function MobileMenu(props, ref) {
                     <div className="text-end mb-3">
                         <button ref={ref} aria-label="Close" className="btn btn-clear" onClick={handleMobileMenu}><i className="fa-solid fa-x" /></button>
                     </div>
-                    <form role="search" method="get" action="/search">
+                    <form role="search" method="get" action={`/${locale}/search`}>
                         <label className="search-label" htmlFor="search">{terms.search}</label>
                         <input autoFocus id="mobile-search" type="search" className="search" placeholder={terms.search} name="term" title="Search" />
                         <button type="submit" className="sch_btn"> <i className="fa-solid fa-magnifying-glass"/></button>
