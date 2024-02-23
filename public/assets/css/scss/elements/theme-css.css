@@ -1544,7 +1544,6 @@ h6 {
   -ms-transition: var(--animation-speed) ease-in-out;
   -moz-transition: var(--animation-speed) ease-in-out;
   -o-transition: var(--animation-speed) ease-in-out;
-  word-break: break-word;
   hyphens: auto;
 }
 
@@ -2640,8 +2639,12 @@ body .enabled_custom_title .title_page .main_tit {
   line-height: 1.5;
 }
 
+.issue-subtitle {
+  font-size: 16px;
+}
+
 .text-lg {
-  font-size: 1.25em;
+  font-size: 1.2em;
 }
 
 .text-lg p {
@@ -19495,6 +19498,7 @@ h1.headline {
 }
 .issue-header .header-image {
   flex: 0 0 20%;
+  margin-top: 16px;
 }
 .issue-header .header-image .image-container {
   position: relative;
@@ -20572,6 +20576,7 @@ a.article-card:hover .read_more i {
   }
   .issue-header .header-image {
     display: block;
+    margin-top: 0;
   }
   .issue-header .header-content {
     padding: 0;

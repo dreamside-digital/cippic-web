@@ -6,6 +6,8 @@ import Fade from 'react-reveal/Fade';
 import getLayoutData from "@/utils/layout-data"
 import { useRouter } from 'next/router'
 import { REVALIDATE_SECONDS } from '@/utils/constants'
+import { useContext } from 'react'
+import { TranslationContext } from '@/contexts/TranslationContext'
 
 const FilterContent = dynamic(() => import('@/components/elements/FilterContent'), {
     ssr: false,
@@ -185,6 +187,7 @@ export const getStaticProps = async ({ params, locale }) => {
 export default function OurWork({ content, layout }) {
     const { contentType, latestArticles, articleFilters, articleCounts, total, slug } = content;
     const { locale } = useRouter()
+    const terms = layout.translation
 
     let localizations;
     if (contentType.localizations?.data && contentType.localizations?.data.length > 0) {
@@ -216,7 +219,7 @@ export default function OurWork({ content, layout }) {
             <Header>
                 <div className="title-section ">
                     <h1 className="mt-0 underline">{contentType.name}</h1>
-                    <h2 className="title-small">{`Latest`}</h2>
+                    <h2 className="title-small">{terms.latest}</h2>
                 </div>
                             
                 <div className="row header-articles">

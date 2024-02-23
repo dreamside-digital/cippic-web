@@ -30,7 +30,7 @@ export default function FancyHeader({ before_title, title, subtitle, byline, ico
                     <h1 className="m-0 underline">{title}</h1>
                   </div>
                   {byline && <p>{byline}</p>}
-                  {subtitle && <p className="text-lg mb-4">{subtitle}</p>}
+                  {subtitle && <p className="issue-subtitle">{subtitle}</p>}
                   {button && <div className="mr_top_40"><ButtonLink href={button.button_link} target="_blank">{button.button_text}</ButtonLink></div>}
                   {children}
               </div>
