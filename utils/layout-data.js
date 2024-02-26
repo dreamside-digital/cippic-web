@@ -10,7 +10,8 @@ export default async function getLayoutData(locale="en") {
         'uottawa_logo.media',
         'header_links',
         'footer_links',
-        'social_media_links'
+        'social_media_links',
+        'default_share_image.media'
       ],
       locale: locale
     },
