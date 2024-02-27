@@ -75,14 +75,9 @@ export const getStaticProps = async ({ locale }) => {
       {
         locale: locale,
         filters: {
-            content_types: {
-                slug: {
-                    $eq: locale === "fr" ? "nouvelles" : "news"
-                }
-            },
-            featured_story: {
-              $null: true
-            }
+          featured_story: {
+            $null: true
+          }
         },
         sort: "date_published:desc",
         pagination: {
