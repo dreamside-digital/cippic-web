@@ -10,6 +10,7 @@
         "sass": "sass --watch public/assets/css/scss/elements/theme-css.scss:public/assets/css/scss/elements/theme-css.css"
     },
     "dependencies": {
+        "@strapi/blocks-react-renderer": "^1.0.1",
         "@vercel/analytics": "^1.1.1",
         "eslint": "8.36.0",
         "eslint-config-next": "13.2.4",
@@ -23,6 +24,7 @@
         "react-modal-video": "^2.0.0",
         "react-reveal": "^1.2.2",
         "react-slick": "^0.29.0",
+        "rehype-external-links": "^3.0.0",
         "rehype-raw": "^7.0.0",
         "remark-gfm": "^4.0.0",
         "sass": "^1.62.1",

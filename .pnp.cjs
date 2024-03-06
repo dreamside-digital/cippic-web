@@ -28,6 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@strapi/blocks-react-renderer", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:1.0.1"],\
             ["@vercel/analytics", "npm:1.1.1"],\
             ["autoprefixer", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:10.4.16"],\
             ["eslint", "npm:8.36.0"],\
@@ -43,6 +44,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-modal-video", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:2.0.0"],\
             ["react-reveal", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:1.2.2"],\
             ["react-slick", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:0.29.0"],\
+            ["rehype-external-links", "npm:3.0.0"],\
             ["rehype-raw", "npm:7.0.0"],\
             ["remark-gfm", "npm:4.0.0"],\
             ["sass", "npm:1.63.4"],\
@@ -771,6 +773,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@socket.io-component-emitter-npm-3.1.0-3f778351c2-db069d9542.zip/node_modules/@socket.io/component-emitter/",\
           "packageDependencies": [\
             ["@socket.io/component-emitter", "npm:3.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@strapi/blocks-react-renderer", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/@strapi-blocks-react-renderer-npm-1.0.1-d4e739b274-064889a3e9.zip/node_modules/@strapi/blocks-react-renderer/",\
+          "packageDependencies": [\
+            ["@strapi/blocks-react-renderer", "npm:1.0.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:1.0.1", {\
+          "packageLocation": "./.yarn/__virtual__/@strapi-blocks-react-renderer-virtual-98172c106e/0/cache/@strapi-blocks-react-renderer-npm-1.0.1-d4e739b274-064889a3e9.zip/node_modules/@strapi/blocks-react-renderer/",\
+          "packageDependencies": [\
+            ["@strapi/blocks-react-renderer", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:1.0.1"],\
+            ["@types/react", null],\
+            ["@types/react-dom", null],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3014,6 +3042,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["creote-nextjs-by-alithemes", "workspace:."],\
+            ["@strapi/blocks-react-renderer", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:1.0.1"],\
             ["@vercel/analytics", "npm:1.1.1"],\
             ["autoprefixer", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:10.4.16"],\
             ["eslint", "npm:8.36.0"],\
@@ -3029,6 +3058,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-modal-video", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:2.0.0"],\
             ["react-reveal", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:1.2.2"],\
             ["react-slick", "virtual:745f2c62c4da978c0d653ab6e52cfa4031d9d92e4a9f32d4e3422c5bb758f412243bf851c8e97b9c3421659e78b824d54e2e96d72237a309c82e5fc52e98f795#npm:0.29.0"],\
+            ["rehype-external-links", "npm:3.0.0"],\
             ["rehype-raw", "npm:7.0.0"],\
             ["remark-gfm", "npm:4.0.0"],\
             ["sass", "npm:1.63.4"],\
@@ -5510,6 +5540,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["hast-util-is-element", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/hast-util-is-element-npm-3.0.0-59c73c7f56-82569a420e.zip/node_modules/hast-util-is-element/",\
+          "packageDependencies": [\
+            ["hast-util-is-element", "npm:3.0.0"],\
+            ["@types/hast", "npm:3.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["hast-util-parse-selector", [\
         ["npm:4.0.0", {\
           "packageLocation": "./.yarn/cache/hast-util-parse-selector-npm-4.0.0-adea10ab8c-76087670d3.zip/node_modules/hast-util-parse-selector/",\
@@ -6104,6 +6144,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ip-npm-2.0.0-204facb3cc-cfcfac6b87.zip/node_modules/ip/",\
           "packageDependencies": [\
             ["ip", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["is-absolute-url", [\
+        ["npm:4.0.1", {\
+          "packageLocation": "./.yarn/cache/is-absolute-url-npm-4.0.1-e2251049d8-de172a7184.zip/node_modules/is-absolute-url/",\
+          "packageDependencies": [\
+            ["is-absolute-url", "npm:4.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -10045,6 +10094,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["registry-url", "npm:5.1.0"],\
             ["rc", "npm:1.2.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["rehype-external-links", [\
+        ["npm:3.0.0", {\
+          "packageLocation": "./.yarn/cache/rehype-external-links-npm-3.0.0-1652b48ebe-f776f306a2.zip/node_modules/rehype-external-links/",\
+          "packageDependencies": [\
+            ["rehype-external-links", "npm:3.0.0"],\
+            ["@types/hast", "npm:3.0.3"],\
+            ["@ungap/structured-clone", "npm:1.2.0"],\
+            ["hast-util-is-element", "npm:3.0.0"],\
+            ["is-absolute-url", "npm:4.0.1"],\
+            ["space-separated-tokens", "npm:2.0.2"],\
+            ["unist-util-visit", "npm:5.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
