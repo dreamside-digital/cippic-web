@@ -34,7 +34,6 @@
         "swiper": "^9.2.4",
         "yet-another-react-lightbox": "^3.15.2"
     },
-    "packageManager": "yarn@3.6.3",
     "devDependencies": {
         "autoprefixer": "^10.4.16",
         "postcss": "^8.4.31"
