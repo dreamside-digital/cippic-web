@@ -286,7 +286,7 @@ export default function QuizPage({ content, layout }) {
 
                 <section className="section-default">
                   <div className="container">
-                    <div className="row" style={{ width: '100%', height: '90vh' }}>
+                    <div className="row" style={{ width: '100%', height: `${correctAnswers ? '100px' : '90vh'}` }}>
                         <Form
                           formId={quiz.slug}
                           formObj={{
