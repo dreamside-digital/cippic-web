@@ -10,10 +10,13 @@
         "sass": "sass --watch public/assets/css/scss/elements/theme-css.scss:public/assets/css/scss/elements/theme-css.css"
     },
     "dependencies": {
+        "@quillforms/react-renderer-utils": "^5.10.0",
+        "@quillforms/renderer-core": "^5.8.0",
         "@strapi/blocks-react-renderer": "^1.0.1",
         "@vercel/analytics": "^1.1.1",
         "eslint": "8.36.0",
         "eslint-config-next": "13.2.4",
+        "nanoid": "^5.0.6",
         "next": "13.2.4",
         "qs": "^6.11.2",
         "react": "18.2.0",
