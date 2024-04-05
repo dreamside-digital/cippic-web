@@ -3,6 +3,7 @@ import ButtonLink from "@/components/elements/ButtonLink"
 import Link from "next/link"
 import Image from "next/image"
 import dynamic from 'next/dynamic'
+import { Head } from 'next/document'
 import getLayoutData from "@/utils/layout-data"
 import Fade from 'react-reveal/Fade';
 import Header from "@/components/sections/Header"
@@ -134,6 +135,16 @@ export const getStaticProps = async ({ params, locale }) => {
 
     const quiz = { id: pageData.id, ...pageData.attributes, questions: questionsWithIds }
 
+    const welcomeBlock = {
+            name: 'welcome-screen',
+            id: 'welcome-screen',
+            attributes: {
+              label: quiz.title,
+              description: quiz.description,
+              buttonText: quiz.startButton || "Start the quiz"
+            }
+          }
+
     const questionBlocks = quiz.questions.map(q => {
       switch (q.__component) {
         case 'quiz.multiple-choice':
@@ -196,6 +207,8 @@ export const getStaticProps = async ({ params, locale }) => {
       }
     }, {})
 
+    questionBlocks.unshift(welcomeBlock)
+
     const content = { quiz, questionBlocks, answers }
 
     return { 
@@ -251,7 +264,6 @@ export default function QuizPage({ content, layout }) {
         alt: quiz.main_image.data.attributes.alternativeText,
         description: quiz.main_image.data.attributes.caption
       }
-      lightboxImages = lightboxImages.concat(mainImage)
     }
 
 
@@ -275,18 +287,15 @@ export default function QuizPage({ content, layout }) {
               title={quiz.title}
             >
               <main id="main" className="site-main" role="main">
-                <Header>
-                  <div className="title_sections">
-                    <h1 className="title-md mb-4">{quiz.title}</h1>
-                  </div>
-                  <p className="byline">
-                  { quiz.date_published && <span className="byline">{`${terms.published} ${dateString}`}</span> }
-                  </p>
-                </Header>
-
-                <section className="section-default">
+                <section className="section-default quiz-section" style={{backgroundImage:`url(${process.env.NEXT_PUBLIC_STRAPI_DOMAIN}${mainImage.url})`}}>
+                  <div className="overlay" />
                   <div className="container">
-                    <div className="row" style={{ width: '100%', height: `${correctAnswers ? '100px' : '90vh'}` }}>
+                    <div id="quiz-container" className={`row ${correctAnswers ? "quiz-result" : "quiz-questions"}`}>
+                      <div className="corner-box" />
+                      <div className="corner-box" />
+                      <div className="corner-box" />
+                      <div className="corner-box" />
+                      <div id="quiz-inner-container">
                         <Form
                           formId={quiz.slug}
                           formObj={{
@@ -302,7 +311,7 @@ export default function QuizPage({ content, layout }) {
                               "block.defaultThankYouScreen.label": `You got {{quiz:correct_answers_count}}/${quiz.questions.length} correct`
                             },
                             theme: {
-                              font: "var(--font-family-one)",
+                              font: "Space Mono",
                               fontSize: {
                                 lg: '16px',
                                 sm: '12px'
@@ -311,24 +320,34 @@ export default function QuizPage({ content, layout }) {
                                 lg: '20px',
                                 sm: '16px'
                               },
-                              buttonsBgColor: "var(--primary-color-two)",
+                              buttonsBgColor: "rgb(16, 249, 187)",
                               logo: {
                                 src: ""
                               },
-                              questionsColor: "#000814",
-                              answersColor: "#0B6291",
-                              buttonsFontColor: "var(--text-color-light)",
+                              questionsColor: "rgb(16, 249, 187)",
+                              answersColor: "rgb(16, 249, 187)",
+                              buttonsFontColor: "var(--primary-color-one)",
                               buttonsBorderRadius: 25,
                               errorsFontColor: "var(--text-color-light)",
                               errorsBgColor: "#f00",
-                              progressBarFillColor: "var(--primary-color-two)",
-                              progressBarBgColor: "#ccc"
+                              progressBarFillColor: "rgb(6, 214, 160)",
+                              progressBarBgColor: "#ccc",
+                              backgroundColor: "transparent"
                             },
                             correctIncorrectQuiz: {
                               enabled: true,
                               questions: answers,
                               showAnswersDuringQuiz: true
-                            }
+                            },
+                            customCSS: `
+                              .multiplechoice__options .multipleChoice__optionWrapper.correct {
+                                background: rgba(6, 214, 160,0.7) !important;
+                              }
+                              .multiplechoice__options .multipleChoice__optionWrapper.wrong {
+                                background: rgba(237, 37, 78,0.7) !important;
+                              };
+
+                            `
                           }}
                           onSubmit={(data, { completeForm, setIsSubmitting }) => {
                             try {
@@ -344,6 +363,7 @@ export default function QuizPage({ content, layout }) {
                           
                         />
 
+                      </div>
                     </div>
                     { quiz.results.map(result => {
                       const hidden = !correctAnswers || (correctAnswers && !(correctAnswers >= result.min_score && correctAnswers <= result.max_score))
