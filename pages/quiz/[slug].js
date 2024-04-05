@@ -275,8 +275,7 @@ export default function QuizPage({ content, layout }) {
       seo = { ...seo, ...quiz.SEO }
     }
 
-    console.log({content})
-    console.log({correctAnswers})
+
 
     return (
         <>
@@ -286,8 +285,8 @@ export default function QuizPage({ content, layout }) {
               seo={seo}
               title={quiz.title}
             >
-              <main id="main" className="site-main" role="main">
-                <section className="section-default quiz-section" style={{backgroundImage:`url(${process.env.NEXT_PUBLIC_STRAPI_DOMAIN}${mainImage.url})`}}>
+              <main id="main" className="site-main quiz-page" role="main">
+                <section className="quiz-section" style={mainImage ? {backgroundImage: `url(${process.env.NEXT_PUBLIC_STRAPI_DOMAIN}${mainImage.url})`} : {}}>
                   <div className="overlay" />
                   <div className="container">
                     <div id="quiz-container" className={`row ${correctAnswers ? "quiz-result" : "quiz-questions"}`}>
@@ -346,7 +345,9 @@ export default function QuizPage({ content, layout }) {
                               .multiplechoice__options .multipleChoice__optionWrapper.wrong {
                                 background: rgba(237, 37, 78,0.7) !important;
                               };
-
+                              .renderer-components-field-content {
+                                max-width: 800px;
+                              }
                             `
                           }}
                           onSubmit={(data, { completeForm, setIsSubmitting }) => {
