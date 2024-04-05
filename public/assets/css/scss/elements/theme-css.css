@@ -19729,6 +19729,7 @@ a.article-card:hover .read_more i {
   background-color: #000;
   position: relative;
   padding: 2.5rem 1rem;
+  font-family: "Space Mono", monospace;
 }
 .quiz-section .overlay {
   position: absolute;
@@ -19781,11 +19782,27 @@ a.article-card:hover .read_more i {
   bottom: 0;
   left: 0;
 }
-#quiz-container.quiz-questions {
+#quiz-container .quiz-content {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+#quiz-inner-container.quiz-questions {
   height: 100%;
 }
-#quiz-container.quiz-result {
+#quiz-inner-container.quiz-result {
   height: 100px;
+}
+
+.recommendations {
+  font-family: "Space Mono", monospace;
+  color: rgb(16, 249, 187);
+  padding: 1rem;
+}
+.recommendations .heading {
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 @media (max-width: 660px) {

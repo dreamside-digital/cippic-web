@@ -289,128 +289,137 @@ export default function QuizPage({ content, layout }) {
                 <section className="quiz-section" style={mainImage ? {backgroundImage: `url(${process.env.NEXT_PUBLIC_STRAPI_DOMAIN}${mainImage.url})`} : {}}>
                   <div className="overlay" />
                   <div className="container">
-                    <div id="quiz-container" className={`row ${correctAnswers ? "quiz-result" : "quiz-questions"}`}>
+                    <div id="quiz-container" className="row">
                       <div className="corner-box" />
                       <div className="corner-box" />
                       <div className="corner-box" />
                       <div className="corner-box" />
-                      <div id="quiz-inner-container">
-                        <Form
-                          formId={quiz.slug}
-                          formObj={{
-                            blocks: questionBlocks,
-                            settings: {
-                              animationDirection: "vertical",
-                              disableWheelSwiping: false,
-                              disableNavigationArrows: false,
-                              disableProgressBar: false
-                            },
-                            messages: {
-                              "label.answersExplanation": "Explanation",
-                              "block.defaultThankYouScreen.label": `You got {{quiz:correct_answers_count}}/${quiz.questions.length} correct`
-                            },
-                            theme: {
-                              font: "Space Mono",
-                              fontSize: {
-                                lg: '16px',
-                                sm: '12px'
+                      <div className="quiz-content">
+                        <div id="quiz-inner-container" className={`${correctAnswers ? "quiz-result" : "quiz-questions"}`}>
+                          <Form
+                            formId={quiz.slug}
+                            formObj={{
+                              blocks: questionBlocks,
+                              settings: {
+                                animationDirection: "vertical",
+                                disableWheelSwiping: false,
+                                disableNavigationArrows: false,
+                                disableProgressBar: false
                               },
-                              questionsLabelFontSize: {
-                                lg: '20px',
-                                sm: '16px'
+                              messages: {
+                                "label.answersExplanation": "Explanation",
+                                "block.defaultThankYouScreen.label": `You got {{quiz:correct_answers_count}}/${quiz.questions.length} correct`
                               },
-                              buttonsBgColor: "rgb(16, 249, 187)",
-                              logo: {
-                                src: ""
+                              theme: {
+                                font: "Space Mono",
+                                fontSize: {
+                                  lg: '16px',
+                                  sm: '12px'
+                                },
+                                questionsLabelFontSize: {
+                                  lg: '20px',
+                                  sm: '16px'
+                                },
+                                buttonsBgColor: "rgb(16, 249, 187)",
+                                logo: {
+                                  src: ""
+                                },
+                                questionsColor: "rgb(16, 249, 187)",
+                                answersColor: "rgb(16, 249, 187)",
+                                buttonsFontColor: "var(--primary-color-one)",
+                                buttonsBorderRadius: 25,
+                                errorsFontColor: "var(--text-color-light)",
+                                errorsBgColor: "#f00",
+                                progressBarFillColor: "rgb(6, 214, 160)",
+                                progressBarBgColor: "#ccc",
+                                backgroundColor: "transparent"
                               },
-                              questionsColor: "rgb(16, 249, 187)",
-                              answersColor: "rgb(16, 249, 187)",
-                              buttonsFontColor: "var(--primary-color-one)",
-                              buttonsBorderRadius: 25,
-                              errorsFontColor: "var(--text-color-light)",
-                              errorsBgColor: "#f00",
-                              progressBarFillColor: "rgb(6, 214, 160)",
-                              progressBarBgColor: "#ccc",
-                              backgroundColor: "transparent"
-                            },
-                            correctIncorrectQuiz: {
-                              enabled: true,
-                              questions: answers,
-                              showAnswersDuringQuiz: true
-                            },
-                            customCSS: `
-                              .multiplechoice__options .multipleChoice__optionWrapper.correct {
-                                background: rgba(6, 214, 160,0.7) !important;
+                              correctIncorrectQuiz: {
+                                enabled: true,
+                                questions: answers,
+                                showAnswersDuringQuiz: true
+                              },
+                              customCSS: `
+                                .multiplechoice__options .multipleChoice__optionWrapper.correct {
+                                  background: rgba(6, 214, 160,0.7) !important;
+                                }
+                                .multiplechoice__options .multipleChoice__optionWrapper.wrong {
+                                  background: rgba(237, 37, 78,0.7) !important;
+                                };
+                                .renderer-components-field-content {
+                                  max-width: 800px;
+                                }
+                                .renderer-components-default-thankyou-screen {
+                                  padding: unset;
+                                }
+                                .renderer-components-default-thankyou-screen p {
+                                  font-weight: 700;
+                                }
+                              `
+                            }}
+                            onSubmit={(data, { completeForm, setIsSubmitting }) => {
+                              try {
+                                const correctCount = quiz.questions.filter(q => data.answers[q.uid].isCorrect).length
+                                setCorrectAnswers(correctCount)
+                              } catch (e) {
+                                console.log(e)
+                              } finally {
+                                setIsSubmitting(false);
+                                completeForm();
                               }
-                              .multiplechoice__options .multipleChoice__optionWrapper.wrong {
-                                background: rgba(237, 37, 78,0.7) !important;
-                              };
-                              .renderer-components-field-content {
-                                max-width: 800px;
-                              }
-                            `
-                          }}
-                          onSubmit={(data, { completeForm, setIsSubmitting }) => {
-                            try {
-                              const correctCount = quiz.questions.filter(q => data.answers[q.uid].isCorrect).length
-                              setCorrectAnswers(correctCount)
-                            } catch (e) {
-                              console.log(e)
-                            } finally {
-                              setIsSubmitting(false);
-                              completeForm();
-                            }
-                          }}
-                          
-                        />
+                            }}
+                            
+                          />
 
+                        </div>
+          
+                        { quiz.results.map(result => {
+                          const hidden = !correctAnswers || (correctAnswers && !(correctAnswers >= result.min_score && correctAnswers <= result.max_score))
+                          return (
+                            <div className="recommendations" key={`result-${result.id}`} hidden={hidden}>
+                              <div className="row">
+                                <div className="col-12">
+                                  <div className="title_sections">
+                                    <p className="mb-4 heading">
+                                      {result.heading}
+                                    </p>
+                                  </div>
+                                  
+                                  <BlocksRenderer 
+                                    content={result.explanation} 
+                                    blocks={{
+                                      image: ({ image }) => {
+                                        return (
+                                          <Image
+                                            src={image.url}
+                                            width={image.width}
+                                            height={image.height}
+                                            alt={image.alternativeText || ""}
+                                          />
+                                        );
+                                      },
+                                      link: ({ children, url }) => {
+                                        if (url.startsWith('http')) {
+                                          return <a href={url} target="_blank">{children}</a>
+                                        } else {
+                                          return <Link href={url}>{children}</Link>
+                                        }
+                                      }
+                                    }}
+                                  />
+
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        })}
+                        <div className="text-center mb-5" hidden={!correctAnswers}>
+                          <ButtonLink href={`/quiz/${quiz.slug}`}>Start over</ButtonLink>
+                        </div>
                       </div>
                     </div>
-                    { quiz.results.map(result => {
-                      const hidden = !correctAnswers || (correctAnswers && !(correctAnswers >= result.min_score && correctAnswers <= result.max_score))
-                      return (
-                        <div key={`result-${result.id}`} hidden={hidden}>
-                          <div className="row">
-                            <div className="col-12">
-                              <div className="title_sections">
-                                <h2 className="mb-4">
-                                  {result.heading}
-                                </h2>
-                              </div>
-                              
-                              <BlocksRenderer 
-                                content={result.explanation} 
-                                blocks={{
-                                  image: ({ image }) => {
-                                    return (
-                                      <Image
-                                        src={image.url}
-                                        width={image.width}
-                                        height={image.height}
-                                        alt={image.alternativeText || ""}
-                                      />
-                                    );
-                                  },
-                                  link: ({ children, url }) => {
-                                    if (url.startsWith('http')) {
-                                      return <a href={url} target="_blank">{children}</a>
-                                    } else {
-                                      return <Link href={url}>{children}</Link>
-                                    }
-                                  }
-                                }}
-                              />
-
-                            </div>
-                          </div>
-                        </div>
-
-                      )
-                    })}
                   </div>
-                  <div className="text-center mt-4" hidden={!correctAnswers}>
-                    <ButtonLink href={`/quiz/${quiz.slug}`}>Start over</ButtonLink>
-                  </div>
+
                 </section>
 
               </main>

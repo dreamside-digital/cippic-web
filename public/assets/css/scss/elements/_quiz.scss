@@ -7,6 +7,7 @@
     background-color: #000;
     position: relative;
     padding: 2.5rem 1rem;
+    font-family: "Space Mono", monospace;
 
     .overlay {
         position: absolute;
@@ -65,12 +66,32 @@
         }
     }
 
+    .quiz-content {
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+    }
+
+}
+
+#quiz-inner-container {
     &.quiz-questions {
         height: 100%;
     }
 
     &.quiz-result {
         height: 100px;
+    }
+}
+
+.recommendations {
+    font-family: "Space Mono", monospace;
+    color: rgb(16, 249, 187);
+    padding: 1rem;
+
+    .heading {
+        font-size: 1.25rem;
+        font-weight: 700;
     }
 }
 
