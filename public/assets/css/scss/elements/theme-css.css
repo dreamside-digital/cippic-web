@@ -19745,6 +19745,13 @@ a.article-card:hover .read_more i {
   height: 100%;
   position: relative;
 }
+.quiz-section .caption {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
 
 #quiz-container {
   width: 100%;
@@ -19808,6 +19815,7 @@ a.article-card:hover .read_more i {
 @media (max-width: 660px) {
   .quiz-section {
     padding: 1rem;
+    padding-bottom: 2rem;
   }
 }
 /*------===============-responsive scs-==============------*/

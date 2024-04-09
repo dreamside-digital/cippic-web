@@ -24,6 +24,14 @@
         height: 100%;
         position: relative;
     }
+
+    .caption {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 4px 8px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+    }
 }
 
 #quiz-container {
@@ -98,6 +106,7 @@
 @media(max-width:660px) {
     .quiz-section {
         padding: 1rem;
+        padding-bottom: 2rem;
     }
 }
 

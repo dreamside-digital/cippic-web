@@ -355,6 +355,13 @@ export default function QuizPage({ content, layout }) {
                                 .renderer-components-default-thankyou-screen p {
                                   font-weight: 700;
                                 }
+                                .blocktype-welcome-screen-block .renderer-components-block-label p {
+                                  font-weight: 700;
+                                }
+                                .blocktype-welcome-screen-block .renderer-components-block-description p {
+                                  font-size: 13px;
+                                  line-height: 1.2;
+                                }
                               `
                             }}
                             onSubmit={(data, { completeForm, setIsSubmitting }) => {
@@ -419,7 +426,7 @@ export default function QuizPage({ content, layout }) {
                       </div>
                     </div>
                   </div>
-
+                  {mainImage && <small className="caption">{mainImage.caption}</small>}
                 </section>
 
               </main>
