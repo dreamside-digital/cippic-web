@@ -56,7 +56,7 @@ async function fetchQuizzes() {
       );
     const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_DOMAIN}/api/quiz?${query}`)
     const { data, meta } = await res.json()
-    return data
+    return data || []
   } catch (e) {
     console.log(e)
     return []
