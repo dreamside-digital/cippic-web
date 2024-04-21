@@ -9,11 +9,12 @@
 /*---slider---cs----*/
 @media(max-width:1199px){
     #wrapper, #content {
-        padding-top: 87px;
+        padding-top: 62px;
     }
 
     .header ,
     .default_sickty_heaad {
+        padding: 0.25rem 0px;
         .header_logo_box{
             img{
                 // max-width: 430px;
@@ -937,7 +938,7 @@
     @media(max-width:660px){
         #wrapper,
         #content {
-            padding-top: 78px; // header
+            padding-top: 54px; // header
         }
 
         .program-cards {

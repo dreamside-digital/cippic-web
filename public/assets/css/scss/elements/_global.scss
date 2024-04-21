@@ -201,7 +201,7 @@ h1 {
 .h2,
 h2 {
     line-height: 1.25;
-    font-size: calc(1.75rem + 1vw);
+    font-size: calc(1.5rem + 0.75vw);
     margin-bottom: 1rem;
     margin-top: 1rem;
 }
@@ -242,7 +242,7 @@ h6 {
 p {
     font-size      : 15px;
     line-height    : 1.4em;
-    font-family    : var(--font-family-one);
+    // font-family    : var(--font-family-one);
     font-weight    : 400;
     margin-bottom  : 0.75em;
     transition     : var(--animation-speed) ease-in-out;

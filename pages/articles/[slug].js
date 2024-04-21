@@ -11,9 +11,11 @@ import { useRouter } from 'next/router'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
+import rehypeExternalLinks from 'rehype-external-links'
 import Lightbox from "yet-another-react-lightbox"
 import Captions from "yet-another-react-lightbox/plugins/captions"
 import { REVALIDATE_SECONDS } from '@/utils/constants'
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 
 
 import "yet-another-react-lightbox/styles.css";
@@ -333,11 +335,40 @@ export default function ArticlePage({ content, layout }) {
                               />
                             </div>
                           }
+                          { article.body && 
                             <div className={`col-12 ${mainImage ? 'col-md-8' : ''} order-md-1`}>
-                                <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>
+                                <ReactMarkdown rehypePlugins={[rehypeRaw, [rehypeExternalLinks, {target: '_blank'}]]} remarkPlugins={[remarkGfm]}>
                                     {article.body}
                                 </ReactMarkdown>
                             </div>
+                          }
+
+                          { article.body_alt && 
+                            <div className={`col-12 ${mainImage ? 'col-md-8' : ''} order-md-1`}>
+                                <BlocksRenderer 
+                                  content={article.body_alt} 
+                                  blocks={{
+                                    image: ({ image }) => {
+                                      return (
+                                        <Image
+                                          src={image.url}
+                                          width={image.width}
+                                          height={image.height}
+                                          alt={image.alternativeText || ""}
+                                        />
+                                      );
+                                    },
+                                    link: ({ children, url }) => {
+                                      if (url.startsWith('http')) {
+                                        return <a href={url} target="_blank">{children}</a>
+                                      } else {
+                                        return <Link href={url}>{children}</Link>
+                                      }
+                                    }
+                                  }}
+                                />
+                            </div>
+                          }
                         </div>
                     </div>
                 </section>
