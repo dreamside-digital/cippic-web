@@ -101,6 +101,11 @@ const REDIRECTS = [
     source: "/sites/default/files/:filepath*",
     destination: `${process.env.ARCHIVED_SITE_DOMAIN}/sites/default/files/:filepath*`,
     permanent: true
+  },
+  {
+    source: "/uploads/:filepath*",
+    destination: `${process.env.ARCHIVED_SITE_DOMAIN}/uploads/:filepath*`,
+    permanent: true
   }
 ]
 
