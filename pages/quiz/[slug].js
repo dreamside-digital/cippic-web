@@ -141,7 +141,7 @@ export const getStaticProps = async ({ params, locale }) => {
             attributes: {
               label: quiz.title,
               description: quiz.description,
-              buttonText: quiz.startButton || "Start the quiz"
+              buttonText: quiz.start_button || "Start the quiz"
             }
           }
 
@@ -233,7 +233,7 @@ export default function QuizPage({ content, layout }) {
       localizations = quiz.localizations.data.map(l => {
         return ({
           ...l.attributes,
-          link: `${l.attributes.locale}/quizzes/${l.attributes.slug}`
+          link: `${l.attributes.locale}/quiz/${l.attributes.slug}`
         })
       })
     }
@@ -307,8 +307,15 @@ export default function QuizPage({ content, layout }) {
                                 disableProgressBar: false
                               },
                               messages: {
-                                "label.answersExplanation": "Explanation",
-                                "block.defaultThankYouScreen.label": `You got {{quiz:correct_answers_count}}/${quiz.questions.length} correct`
+                                "label.answersExplanation": quiz.explanation,
+                                "block.defaultThankYouScreen.label": quiz.result_correct,
+                                "label.hintText.enter": quiz.press_enter,
+                                "label.progress.percent": quiz.progress_bar_label,
+                                "label.errorAlert.required": quiz.required_field,
+                                "label.submitBtn": quiz.submit,
+                                "label.correct": quiz.correct,
+                                "label.incorrect": quiz.incorrect,
+                                "label.yourAnswer": quiz.your_answer,
                               },
                               theme: {
                                 font: "Space Mono",
@@ -421,7 +428,7 @@ export default function QuizPage({ content, layout }) {
                           )
                         })}
                         <div className="text-center mb-5" hidden={!correctAnswers}>
-                          <ButtonLink href={`/quiz/${quiz.slug}`}>Start over</ButtonLink>
+                          <ButtonLink href={`/${router.locale}/quiz/${quiz.slug}`}>{quiz.start_over}</ButtonLink>
                         </div>
                       </div>
                     </div>
