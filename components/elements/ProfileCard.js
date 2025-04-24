@@ -16,7 +16,7 @@ export default function ProfileCard ({
     }
 
     const hasImage = showImage && image
-    const sizedImage = image.formats?.medium ? image.formats.medium : image
+    const sizedImage = image?.formats?.medium ? image.formats.medium : image
 
     return (
         <div className={`article-card profile-card bg-white image-left`}>
